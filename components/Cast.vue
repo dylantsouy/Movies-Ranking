@@ -96,16 +96,21 @@ export default {
       detail: {}
     };
   },
-  async mounted() {
+  mounted() {
     const vm = this;
     /* 拿Api */
-    await vm.getBeforeMovie();
-    await vm.getDetail();
-    setTimeout(() => {
-      vm.loading = false;
-    }, 50);
+    vm.withPromise()
+    .then(()=>vm.getBeforeMovie())
+    .then(()=>vm.getDetail())
+    .then(()=>vm.loading = false)
   },
   methods: {
+    /* Promise call */
+    withPromise() {
+      return new Promise(resolve => {
+        resolve();
+      });
+    },
     /* Emit close */
     close() {
       const vm = this;
