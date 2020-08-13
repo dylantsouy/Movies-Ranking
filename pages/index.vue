@@ -319,16 +319,9 @@ export default {
       top: 0
     });
     /* call Api */
-    vm.withPromise()
-      .then(() => vm.getNowPlayingData())
-      .then(() => vm.getPopularData())
-      .then(() => vm.getUpcomingData())
-      .then(() => vm.getTopRateData())
-      .then(() => vm.getType())
-      .then(() => (vm.loading = false))
-      .then(() => document.querySelector("#carousel").classList.add("active"))
-      .then(() => document.querySelector("#popular").classList.add("active"));
-      /* scroll 監聽動畫 */
+    vm.callMovie();
+
+    /* scroll 監聽動畫 */
     window.addEventListener("scroll", () => {
       const top1 = document.documentElement.scrollTop;
       const top2 = document.querySelector("#upcoming").offsetTop;
@@ -359,6 +352,32 @@ export default {
     }, 50);
   },
   methods: {
+    /* call 電影api */
+    callMovie() {
+      const vm = this;
+      vm.withPromise()
+        .then(() => vm.getTopRateData())
+        .then(() => vm.getPopularData())
+        .then(() => vm.getUpcomingData())
+        .then(() => vm.getNowPlayingData())
+        .then(() => vm.getType())
+        .then(() => (vm.loading = false))
+        .then(() => document.querySelector("#carousel").classList.add("active"))
+        .then(() => document.querySelector("#popular").classList.add("active"));
+    },
+    /* call 影集api */
+    callTv() {
+      const vm = this;
+      vm.withPromise()
+        .then(() => vm.getTopRateTv())
+        .then(() => vm.getPopularTv())
+        .then(() => vm.getUpcomingTv())
+        .then(() => vm.getNowPlayingTv())
+        .then(() => vm.getTypeTv())
+        .then(() => (vm.loading = false))
+        .then(() => document.querySelector("#carousel").classList.add("active"))
+        .then(() => document.querySelector("#popular").classList.add("active"));
+    },
     /* 拿電影分類 */
     async getType() {
       const vm = this;
@@ -407,64 +426,6 @@ export default {
         e => e.backdrop_path !== null
       );
     },
-    /* 點擊電影後開啟dialog */
-    goDetail(item) {
-      const vm = this;
-      vm.data = item;
-      vm.showDetail = true;
-    },
-    /* Promise call */
-    withPromise() {
-      return new Promise(resolve => {
-        resolve();
-      });
-    },
-    /* 更新為電影 */
-    async changeMovie() {
-      const vm = this;
-      vm.type = 1;
-      vm.loading = true;
-      window.scrollTo({
-        top: 0
-      });
-      document.querySelector("#carousel").classList.remove("active");
-      document.querySelector("#popular").classList.remove("active");
-      document.querySelector("#upcoming").classList.remove("active");
-      document.querySelector("#playing").classList.remove("active");
-      document.querySelector("#rate").classList.remove("active");
-      vm.withPromise()
-      .then(() => vm.getTopRateData())
-      .then(() => vm.getPopularData())
-      .then(() => vm.getUpcomingData())
-      .then(() => vm.getNowPlayingData())
-      .then(() => vm.getType())
-      .then(() => (vm.loading = false))
-      .then(() => document.querySelector("#carousel").classList.add("active"))
-      .then(() => document.querySelector("#popular").classList.add("active"));
-    },
-    /* 更新為影集 */
-    async changeTv() {
-      const vm = this;
-      vm.type = 2;
-      vm.loading = true;
-      window.scrollTo({
-        top: 0
-      });
-      document.querySelector("#carousel").classList.remove("active");
-      document.querySelector("#popular").classList.remove("active");
-      document.querySelector("#upcoming").classList.remove("active");
-      document.querySelector("#playing").classList.remove("active");
-      document.querySelector("#rate").classList.remove("active");
-      vm.withPromise()
-      .then(() => vm.getTopRateTv())
-      .then(() => vm.getPopularTv())
-      .then(() => vm.getUpcomingTv())
-      .then(() => vm.getNowPlayingTv())
-      .then(() => vm.getTypeTv())
-      .then(() => (vm.loading = false))
-      .then(() => document.querySelector("#carousel").classList.add("active"))
-      .then(() => document.querySelector("#popular").classList.add("active"));
-    },
     /* 拿影集分類 */
     async getTypeTv() {
       const vm = this;
@@ -512,6 +473,45 @@ export default {
       vm.popularData = result.data.results.filter(
         e => e.backdrop_path !== null
       );
+    },
+    /* 點擊電影後開啟dialog */
+    goDetail(item) {
+      const vm = this;
+      vm.data = item;
+      vm.showDetail = true;
+    },
+    /* Promise call */
+    withPromise() {
+      return new Promise(resolve => {
+        resolve();
+      });
+    },
+    /* 移除動畫class */
+    removeClass() {
+      window.scrollTo({
+        top: 0
+      });
+      document.querySelector("#carousel").classList.remove("active");
+      document.querySelector("#popular").classList.remove("active");
+      document.querySelector("#upcoming").classList.remove("active");
+      document.querySelector("#playing").classList.remove("active");
+      document.querySelector("#rate").classList.remove("active");
+    },
+    /* 更新為電影 */
+    async changeMovie() {
+      const vm = this;
+      vm.type = 1;
+      vm.loading = true;
+      vm.removeClass();
+      vm.callMovie();
+    },
+    /* 更新為影集 */
+    async changeTv() {
+      const vm = this;
+      vm.type = 2;
+      vm.loading = true;
+      vm.removeClass();
+      vm.callTv();
     }
   }
 };
@@ -625,16 +625,18 @@ export default {
 }
 .row-popular {
   opacity: 0;
-  transition: all 1s;
   transform: translateX(-2500px);
 
   &.active {
     opacity: 1;
     transform: translateX(0);
   }
-  &:hover {
-    transform: scale(1.05);
-    margin-left: 50px;
+  .swiper-slide {
+  transition: all 1s;
+    &:hover {
+      transform: scale(1.1);
+      margin-left: 50px;
+    }
   }
 }
 
