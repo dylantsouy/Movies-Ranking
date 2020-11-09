@@ -278,11 +278,13 @@ export default {
       loading: true,
       mountedOver: false,
       pass: false,
+      observer: true,
+      observeParents: true,
+      parallax: true,
       /* Dialog */
       showDetail: false,
       /* Swiper 設定 1為熱門 2為其他*/
       swiperOption: {
-        grabCursor: true,
         slidesPerView: 1,
         spaceBetween: 100,
         breakpoints: {
@@ -313,14 +315,13 @@ export default {
       }
     };
   },
-  async mounted() {
+  mounted() {
     const vm = this;
     window.scrollTo({
       top: 0
     });
     /* call Api */
     vm.callMovie();
-
     /* scroll 監聽動畫 */
     window.addEventListener("scroll", () => {
       const top1 = document.documentElement.scrollTop;
@@ -352,6 +353,11 @@ export default {
     }, 50);
   },
   methods: {
+    withPromise() {
+      return new Promise(resolve => {
+        resolve();
+      });
+    },
     /* call 電影api */
     callMovie() {
       const vm = this;
@@ -363,7 +369,7 @@ export default {
         .then(() => vm.getType())
         .then(() => (vm.loading = false))
         .then(() => document.querySelector("#carousel").classList.add("active"))
-        .then(() => document.querySelector("#popular").classList.add("active"));
+        .then(() => document.querySelector("#popular").classList.add("active"))
     },
     /* call 影集api */
     callTv() {
@@ -480,12 +486,6 @@ export default {
       vm.data = item;
       vm.showDetail = true;
     },
-    /* Promise call */
-    withPromise() {
-      return new Promise(resolve => {
-        resolve();
-      });
-    },
     /* 移除動畫class */
     removeClass() {
       window.scrollTo({
@@ -498,7 +498,7 @@ export default {
       document.querySelector("#rate").classList.remove("active");
     },
     /* 更新為電影 */
-    async changeMovie() {
+    changeMovie() {
       const vm = this;
       vm.type = 1;
       vm.loading = true;
@@ -506,7 +506,7 @@ export default {
       vm.callMovie();
     },
     /* 更新為影集 */
-    async changeTv() {
+    changeTv() {
       const vm = this;
       vm.type = 2;
       vm.loading = true;
@@ -632,7 +632,7 @@ export default {
     transform: translateX(0);
   }
   .swiper-slide {
-  transition: all 1s;
+    transition: all 1s;
     &:hover {
       transform: scale(1.1);
       margin-left: 50px;
