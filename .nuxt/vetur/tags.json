@@ -1,0 +1,32 @@
+{
+  "Cast": {
+    "description": "Auto imported from components/Cast.vue"
+  },
+  "LazyCast": {
+    "description": "Auto imported from components/Cast.vue"
+  },
+  "Detail": {
+    "description": "Auto imported from components/Detail.vue"
+  },
+  "LazyDetail": {
+    "description": "Auto imported from components/Detail.vue"
+  },
+  "Detailtv": {
+    "description": "Auto imported from components/Detailtv.vue"
+  },
+  "LazyDetailtv": {
+    "description": "Auto imported from components/Detailtv.vue"
+  },
+  "Footer": {
+    "description": "Auto imported from components/Footer.vue"
+  },
+  "LazyFooter": {
+    "description": "Auto imported from components/Footer.vue"
+  },
+  "Header": {
+    "description": "Auto imported from components/Header.vue"
+  },
+  "LazyHeader": {
+    "description": "Auto imported from components/Header.vue"
+  }
+}
