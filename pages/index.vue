@@ -82,7 +82,7 @@
       <!-- 熱門 -->
       <div class="swiper-title popular-title">Popular</div>
       <div class="row-popular" id="popular">
-        <div v-swiper:mySwiper="swiperOption" class="swiper-container">
+        <div v-swiper:mySwiper="swiperOption" class="swiper-big swiper-container">
           <div class="swiper-wrapper">
             <swiper-slide v-for="(item, index) in popularData" :key="index">
               <div class="rating">{{ index + 1 }}</div>
@@ -111,8 +111,8 @@
               </div>
             </swiper-slide>
           </div>
-          <!-- <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div> -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <!-- 即將上映 or On The Air -->
@@ -120,7 +120,10 @@
         <div class="swiper-title">
           {{ type === 1 ? 'Upcoming' : 'On The Air' }}
         </div>
-        <div v-swiper:mySwiper2="swiperOption2" class="swiper-container">
+        <div
+          v-swiper:mySwiper2="swiperOption2"
+          class="swiper-container swiper-small"
+        >
           <div class="swiper-wrapper">
             <swiper-slide v-for="(item, index) in upcomingData" :key="index">
               <img
@@ -149,6 +152,8 @@
               </div>
             </swiper-slide>
           </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <!-- 現在播放 Or Airing Today -->
@@ -156,7 +161,10 @@
         <div class="swiper-title">
           {{ type === 1 ? 'Now Playing' : 'Airing Today' }}
         </div>
-        <div v-swiper:mySwiper3="swiperOption2" class="swiper-container">
+        <div
+          v-swiper:mySwiper3="swiperOption2"
+          class="swiper-container swiper-small"
+        >
           <div class="swiper-wrapper">
             <swiper-slide v-for="(item, index) in nowPlayingData" :key="index">
               <img
@@ -185,12 +193,17 @@
               </div>
             </swiper-slide>
           </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <!-- 最高評價 -->
       <div class="row-rate" id="rate">
         <div class="swiper-title">Top Rate</div>
-        <div v-swiper:mySwiper4="swiperOption2" class="swiper-container">
+        <div
+          v-swiper:mySwiper4="swiperOption2"
+          class="swiper-container swiper-small"
+        >
           <div class="swiper-wrapper">
             <swiper-slide v-for="(item, index) in topRateData" :key="index">
               <img
@@ -219,6 +232,8 @@
               </div>
             </swiper-slide>
           </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
     </div>
@@ -289,10 +304,10 @@ export default {
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 100,
-        /* navigation: {
+        navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
-        }, */
+        },
         breakpoints: {
           800: {
             slidesPerView: 2,
@@ -308,6 +323,10 @@ export default {
         grabCursor: true,
         slidesPerView: 2,
         spaceBetween: 10,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
         breakpoints: {
           800: {
             slidesPerView: 3,

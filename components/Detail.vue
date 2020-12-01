@@ -19,8 +19,8 @@
             <span v-for="(item, index) in data && data.genre_ids" :key="index">
               {{
                 typeData
-                  .filter(e => e.id === item)
-                  .map(e => e.name)
+                  .filter((e) => e.id === item)
+                  .map((e) => e.name)
                   .toString()
               }}
               <span v-if="index !== data.genre_ids.length - 1">|</span>
@@ -72,6 +72,8 @@
             <div class="name">{{ item.name }}</div>
           </swiper-slide>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </div>
     <div class="row">
@@ -115,28 +117,28 @@
 </template>
 
 <script>
-import axios from "axios";
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
-import "swiper/swiper-bundle.css";
-import Cast from "@/components/Cast";
+import axios from 'axios';
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+import 'swiper/swiper-bundle.css';
+import Cast from '@/components/Cast';
 
 export default {
   props: {
     /* Cast Data */
     data: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     /* 分類資料 */
     typeData: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   components: {
     Swiper,
     SwiperSlide,
-    Cast
+    Cast,
   },
   data() {
     return {
@@ -150,21 +152,25 @@ export default {
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 20,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
         breakpoints: {
           500: {
             slidesPerView: 3,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
           800: {
             slidesPerView: 4,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
           1300: {
             slidesPerView: 6,
-            spaceBetween: 30
-          }
-        }
-      }
+            spaceBetween: 30,
+          },
+        },
+      },
     };
   },
   async mounted() {
@@ -177,7 +183,7 @@ export default {
     /* EMIT CLOSE */
     close() {
       const vm = this;
-      vm.$emit("close");
+      vm.$emit('close');
     },
     /* 拿CAST API */
     async getCast() {
@@ -185,7 +191,7 @@ export default {
       const result = await axios.get(
         `https://api.themoviedb.org/3/movie/${vm.data.id}/credits?api_key=0f79586eb9d92afa2b7266f7928b055c`
       );
-      vm.castData = result.data.cast.filter(e => e.profile_path !== null);
+      vm.castData = result.data.cast.filter((e) => e.profile_path !== null);
     },
     /* 拿Review Api */
     async getReview() {
@@ -200,8 +206,8 @@ export default {
       const vm = this;
       vm.castDetail = item;
       vm.showCast = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -252,18 +258,18 @@ export default {
         color: #000;
         font-weight: 600;
         font-size: 32px;
-        font-family: "Bangers", cursive;
-        font-family: "Krona One", sans-serif;
+        font-family: 'Bangers', cursive;
+        font-family: 'Krona One', sans-serif;
       }
       .date {
         font-size: 14px;
-        font-family: "Bangers", cursive;
-        font-family: "Krona One", sans-serif;
+        font-family: 'Bangers', cursive;
+        font-family: 'Krona One', sans-serif;
       }
       .type {
         font-size: 14px;
-        font-family: "Bangers", cursive;
-        font-family: "Krona One", sans-serif;
+        font-family: 'Bangers', cursive;
+        font-family: 'Krona One', sans-serif;
       }
       .overview {
         font-size: 16px;
@@ -356,8 +362,8 @@ export default {
       text-overflow: ellipsis;
       color: #fff;
       margin-left: 80px;
-      font-family: "Bangers", cursive;
-      font-family: "Krona One", sans-serif;
+      font-family: 'Bangers', cursive;
+      font-family: 'Krona One', sans-serif;
     }
     svg {
       color: #fff;
@@ -402,6 +408,35 @@ export default {
     .link {
       margin-left: 55px;
     }
+  }
+}
+
+.swiper-button-next {
+  font-size: 12px;
+  color: #fff;
+  text-shadow: 0px 0px 5px #333;
+  margin-right: 5px;
+  transform: translateY(-70%);
+  z-index: 100;
+
+  &:after {
+    font-weight: 600;
+    font-size: 40px;
+    z-index: 100;
+  }
+}
+
+.swiper-button-prev {
+  color: #fff;
+  text-shadow: 0px 0px 5px #333;
+  margin-left: 5px;
+  transform: translateY(-70%);
+  z-index: 100;
+
+  &:after {
+    font-weight: 600;
+    font-size: 40px;
+    z-index: 100;
   }
 }
 @media screen and (max-width: 1100px) {

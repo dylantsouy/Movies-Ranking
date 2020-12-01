@@ -62,7 +62,7 @@
               />
               <!-- 角色 -->
               <div class="name">
-                Character: {{ item.character ? item.character : "No Data" }}
+                Character: {{ item.character ? item.character : 'No Data' }}
               </div>
             </div>
             <div class="bottom">
@@ -78,43 +78,39 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   props: {
     /* 上頁傳來角色資料 */
     data: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       loading: true,
       /* 資料 */
       beforeMovie: [],
-      detail: {}
+      detail: {},
     };
   },
-  mounted() {
+  async mounted() {
     const vm = this;
     /* 拿Api */
-    vm.withPromise()
-    .then(()=>vm.getBeforeMovie())
-    .then(()=>vm.getDetail())
-    .then(()=>vm.loading = false)
+    await vm.getBeforeMovie();
+    await vm.getDetail();
+    return await new Promise((resolve) => {
+      vm.loading = false;
+      resolve();
+    });
   },
   methods: {
-    /* Promise call */
-    withPromise() {
-      return new Promise(resolve => {
-        resolve();
-      });
-    },
     /* Emit close */
     close() {
       const vm = this;
-      vm.$emit("close");
+      vm.$emit('close');
     },
     /* 拿過往電影api */
     async getBeforeMovie() {
@@ -122,7 +118,7 @@ export default {
       const result = await axios.get(
         `https://api.themoviedb.org/3/person/${vm.data.id}/combined_credits?api_key=0f79586eb9d92afa2b7266f7928b055c&language=en-US`
       );
-      vm.beforeMovie = result.data.cast.filter(e => e.poster_path !== null);
+      vm.beforeMovie = result.data.cast.filter((e) => e.poster_path !== null);
     },
     /* 拿詳細資料api */
     async getDetail() {
@@ -131,8 +127,8 @@ export default {
         `https://api.themoviedb.org/3/person/${vm.data.id}?api_key=0f79586eb9d92afa2b7266f7928b055c&language=en-US`
       );
       vm.detail = result.data;
-    }
-  }
+    },
+  },
 };
 </script>
 

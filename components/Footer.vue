@@ -11,7 +11,7 @@
       <div class="icon">
         <div class="logo-area">
           <img
-            src="http://moviefinder.me/static/media/TMDBLogo.12d095ee.svg"
+            src="../static/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg"
             alt="TMDBLogo"
           />
         </div>
@@ -29,7 +29,7 @@
         </a>
       </div>
 
-      <div>Copyright© 2020 Code by Dylan</div>
+      <div class="copyright">Copyright© 2020 Code by Dylan</div>
     </div>
   </div>
 </template>
@@ -43,8 +43,8 @@ export default {
     goPrevPage() {
       const vm = this;
       vm.$router.back();
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -71,12 +71,15 @@ export default {
     color: #aaa;
     margin-left: 50px;
     margin-top: 60px;
+    .copyright {
+      white-space: nowrap;
+    }
     .icon {
       display: flex;
       top: -35px;
       right: 0px;
       position: absolute;
-      .logo-area{
+      .logo-area {
         width: 100px;
         height: 50px;
         margin-right: 5px;
@@ -118,6 +121,12 @@ export default {
       margin-bottom: 15px;
       .icon {
         top: -25px;
+        .logo-area {
+          width: 70px;
+          height: 30px;
+          margin-right: 5px;
+          transform: translateY(-12px);
+        }
         i {
           width: 20px;
           height: 20px;
