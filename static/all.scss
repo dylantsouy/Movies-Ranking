@@ -568,6 +568,18 @@
 }
 
 @media screen and (max-width: 490px) {
+  .swiper-big {
+
+    .swiper-button-next {
+      transform: translateY(-37.5%) translateX(30%);
+    }
+
+    .swiper-button-prev {
+      transform: translateY(-37.5%) translateX(-30%);
+    }
+
+  }
+
   .ant-rate {
     font-size: 14px;
   }
