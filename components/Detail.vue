@@ -119,7 +119,7 @@
 <script>
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
-import 'swiper/swiper-bundle.css';
+import 'swiper/css/swiper.css'
 import Cast from '@/components/Cast';
 
 export default {

@@ -266,7 +266,7 @@
 <script>
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
-import 'swiper/swiper-bundle.css';
+import 'swiper/css/swiper.css'
 import Detail from '@/components/Detail';
 import Detailtv from '@/components/Detailtv';
 import Header from '@/components/Header';
