@@ -1,10 +1,10 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=400px height=210px src="https://i.imgur.com/yGKhnta.jpg" alt="Project logo"></a>
+ <img width=400px height=210px src="https://i.imgur.com/mgEQjFo.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Gif-Search</h3>
-<p align="center">https://dygifsearch.herokuapp.com/
+<h3 align="center">Movies Ranking</h3>
+<p align="center">https://dymoviesearch.herokuapp.com/
 </p>
 
 
@@ -22,7 +22,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
- This is the Gif Search website, Connect Api GIPHY, This is just a project. If you need more information, Please feel free to contact me at any time
+ This is the Movies website, Connect Api TMDb, This is just a project. If you need more information, Please feel free to contact me at any time
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -52,19 +52,19 @@ The page will reload if you make edits.
 You will also see any lint errors in the console.
 
 ## 🎈 Usage <a name="usage"></a>
-You can search gif / stickers name or select Categories to filter out gif images or stickers
+Best Sites For Movies Ranking
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
 Deploy to Heroku
-https://dygifsearch.herokuapp.com/
+https://dymoviesearch.herokuapp.com/
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [Vue](https://vuejs.org/) - JavaScript Framework
 - [Nuxt](https://nuxtjs.org/) - Vue Framework
 - [Antd](https://ant.design/) - UI Framework
-- [GIPHY](https://developers.giphy.com/) - Third-party APIs
+- [TMDb](https://developers.themoviedb.org/3/getting-started/introduction) - Third-party APIs
 
 ## ✍️ Authors <a name = "authors"></a>
 
