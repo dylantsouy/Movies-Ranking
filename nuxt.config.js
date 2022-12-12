@@ -73,6 +73,6 @@ export default {
   build: {
   },
   router: {
-    base:'/movie'
+    base: '/Movies-Ranking/'
   }
 }
